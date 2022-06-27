@@ -5,9 +5,9 @@
   <subtitle>前行。</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://hanxiaolin.me/"/>
-  <updated>2018-09-26T10:57:25.000Z</updated>
-  <id>http://hanxiaolin.me/</id>
+  <link href="https://hanxiaolin.github.io/blog/"/>
+  <updated>2018-09-26T11:31:24.000Z</updated>
+  <id>https://hanxiaolin.github.io/blog/</id>
   
   <author>
     <name>hanxiaolin</name>
@@ -17,11 +17,25 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Serializable</title>
+    <link href="https://hanxiaolin.github.io/blog/2018/09/27/Serializable/"/>
+    <id>https://hanxiaolin.github.io/blog/2018/09/27/Serializable/</id>
+    <published>2018-09-26T19:31:24.000Z</published>
+    <updated>2018-09-26T11:31:24.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>spl之ArrayAccess</title>
-    <link href="http://hanxiaolin.me/2018/09/27/ArrayAccess/"/>
-    <id>http://hanxiaolin.me/2018/09/27/ArrayAccess/</id>
+    <link href="https://hanxiaolin.github.io/blog/2018/09/27/ArrayAccess/"/>
+    <id>https://hanxiaolin.github.io/blog/2018/09/27/ArrayAccess/</id>
     <published>2018-09-26T18:28:28.000Z</published>
-    <updated>2018-09-26T10:57:25.000Z</updated>
+    <updated>2018-09-26T11:29:10.000Z</updated>
     
     <content type="html"><![CDATA[<p>突然想整理下自己的技术栈，毕竟也工作的蛮久，很多东西可能一直处于盲区所以想统一的做一个归纳，不懂的进一步去学习下，完善一下自己的技术栈。<br><a id="more"></a></p><p>突然想整理下自己的技术栈，毕竟也工作的蛮久，很多东西可能一直处于盲区所以想统一的做一个归纳，不懂的进一步去学习下，完善一下自己的技术栈。<br>php是工作中用的最多的语言，但是觉大多数的时候我们都是写一些逻辑代码，高级的知识点我们接触使用的并不是很多，php的整体归纳为第一个要攻下的目标。php的spl里面有很多有用的东西，之前用过一些但是还是有很多没用尝试过的，接下来就先来使用下一些很有用的spl及使用场景。</p><h2 id="ArrayAccess"><a href="#ArrayAccess" class="headerlink" title="ArrayAccess"></a>ArrayAccess</h2><p>ArrayAccess是数组式访问接口，提供了以下接口:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ArrayAccess &#123;</span><br><span class="line">/* 方法 */</span><br><span class="line">abstract public boolean offsetExists ( mixed $offset )</span><br><span class="line">abstract public mixed offsetGet ( mixed $offset )</span><br><span class="line">abstract public void offsetSet ( mixed $offset , mixed $value )</span><br><span class="line">abstract public void offsetUnset ( mixed $offset )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>结合配置文件的使用场景我们来使用下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">require_once(dirname(__FILE__).&apos;/vendor/autoload.php&apos;);</span><br><span class="line"></span><br><span class="line">final Class Config implements \ArrayAccess &#123;</span><br><span class="line">    public $config = [];</span><br><span class="line">    private $path = null;</span><br><span class="line"></span><br><span class="line">    public function __construct()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;path = __DIR__ . &apos;/../../../shihuo_v36/config/&apos;;</span><br><span class="line">    &#125;</span><br><span class="line">    public function offsetExists($offset)</span><br><span class="line">    &#123;</span><br><span class="line">        return isset($this-&gt;config[$offset]);</span><br><span class="line">    &#125;</span><br><span class="line">    public function offsetGet($offset)</span><br><span class="line">    &#123;</span><br><span class="line">        if (!isset($this-&gt;config[$offset])) &#123;</span><br><span class="line">            $ymlPath =  $this-&gt;path . $offset . &apos;.yml&apos;;</span><br><span class="line"></span><br><span class="line">            $data = spyc_load_file($ymlPath);</span><br><span class="line"></span><br><span class="line">            $this-&gt;config[$offset] = $data;</span><br><span class="line">        &#125;</span><br><span class="line">        return $this-&gt;config[$offset];</span><br><span class="line">    &#125;</span><br><span class="line">    public function offsetSet($offset, $value)</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;config[$offset] = $value;</span><br><span class="line">    &#125;</span><br><span class="line">    public function offsetUnset($offset)</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$c = new Config();</span><br><span class="line"></span><br><span class="line">print_r($c[&apos;app&apos;][&apos;prod&apos;][&apos;.api&apos;]);</span><br><span class="line">print_r($c[&apos;databases&apos;][&apos;prod&apos;][&apos;mysphinxMysql&apos;]);</span><br></pre></td></tr></table></figure></p>]]></content>
     
@@ -32,14 +46,14 @@
     </summary>
     
     
-      <category term="spl,php" scheme="http://hanxiaolin.me/tags/spl-php/"/>
+      <category term="spl,php" scheme="https://hanxiaolin.github.io/blog/tags/spl-php/"/>
     
   </entry>
   
   <entry>
     <title>logstash安装记录(yum)</title>
-    <link href="http://hanxiaolin.me/2018/07/19/logstash-install/"/>
-    <id>http://hanxiaolin.me/2018/07/19/logstash-install/</id>
+    <link href="https://hanxiaolin.github.io/blog/2018/07/19/logstash-install/"/>
+    <id>https://hanxiaolin.github.io/blog/2018/07/19/logstash-install/</id>
     <published>2018-07-19T10:34:59.000Z</published>
     <updated>2018-07-19T03:18:41.000Z</updated>
     
@@ -52,14 +66,14 @@
     </summary>
     
     
-      <category term="logstash" scheme="http://hanxiaolin.me/tags/logstash/"/>
+      <category term="logstash" scheme="https://hanxiaolin.github.io/blog/tags/logstash/"/>
     
   </entry>
   
   <entry>
     <title>东矶列岛之田岙岛</title>
-    <link href="http://hanxiaolin.me/2017/07/20/tianaodao/"/>
-    <id>http://hanxiaolin.me/2017/07/20/tianaodao/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/07/20/tianaodao/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/07/20/tianaodao/</id>
     <published>2017-07-19T21:15:48.000Z</published>
     <updated>2017-07-19T15:19:44.000Z</updated>
     
@@ -72,18 +86,18 @@
     </summary>
     
     
-      <category term="田岙岛" scheme="http://hanxiaolin.me/tags/%E7%94%B0%E5%B2%99%E5%B2%9B/"/>
+      <category term="田岙岛" scheme="https://hanxiaolin.github.io/blog/tags/%E7%94%B0%E5%B2%99%E5%B2%9B/"/>
     
-      <category term="东矶列岛" scheme="http://hanxiaolin.me/tags/%E4%B8%9C%E7%9F%B6%E5%88%97%E5%B2%9B/"/>
+      <category term="东矶列岛" scheme="https://hanxiaolin.github.io/blog/tags/%E4%B8%9C%E7%9F%B6%E5%88%97%E5%B2%9B/"/>
     
-      <category term="台州" scheme="http://hanxiaolin.me/tags/%E5%8F%B0%E5%B7%9E/"/>
+      <category term="台州" scheme="https://hanxiaolin.github.io/blog/tags/%E5%8F%B0%E5%B7%9E/"/>
     
   </entry>
   
   <entry>
     <title>php扩展开发那点事</title>
-    <link href="http://hanxiaolin.me/2017/07/08/php-module/"/>
-    <id>http://hanxiaolin.me/2017/07/08/php-module/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/07/08/php-module/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/07/08/php-module/</id>
     <published>2017-07-07T21:03:21.000Z</published>
     <updated>2017-07-07T14:56:35.000Z</updated>
     
@@ -96,16 +110,16 @@
     </summary>
     
     
-      <category term="php" scheme="http://hanxiaolin.me/tags/php/"/>
+      <category term="php" scheme="https://hanxiaolin.github.io/blog/tags/php/"/>
     
-      <category term="扩展" scheme="http://hanxiaolin.me/tags/%E6%89%A9%E5%B1%95/"/>
+      <category term="扩展" scheme="https://hanxiaolin.github.io/blog/tags/%E6%89%A9%E5%B1%95/"/>
     
   </entry>
   
   <entry>
     <title>git版本升级</title>
-    <link href="http://hanxiaolin.me/2017/07/05/gitUpgrade/"/>
-    <id>http://hanxiaolin.me/2017/07/05/gitUpgrade/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/07/05/gitUpgrade/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/07/05/gitUpgrade/</id>
     <published>2017-07-05T10:43:39.000Z</published>
     <updated>2017-07-05T02:50:12.000Z</updated>
     
@@ -123,16 +137,16 @@
     </summary>
     
     
-      <category term="git" scheme="http://hanxiaolin.me/tags/git/"/>
+      <category term="git" scheme="https://hanxiaolin.github.io/blog/tags/git/"/>
     
-      <category term="升级" scheme="http://hanxiaolin.me/tags/%E5%8D%87%E7%BA%A7/"/>
+      <category term="升级" scheme="https://hanxiaolin.github.io/blog/tags/%E5%8D%87%E7%BA%A7/"/>
     
   </entry>
   
   <entry>
     <title>设计模式之依赖注入</title>
-    <link href="http://hanxiaolin.me/2017/07/04/denpdencyInject/"/>
-    <id>http://hanxiaolin.me/2017/07/04/denpdencyInject/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/07/04/denpdencyInject/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/07/04/denpdencyInject/</id>
     <published>2017-07-04T13:56:46.000Z</published>
     <updated>2017-07-04T07:02:12.000Z</updated>
     
@@ -145,18 +159,18 @@
     </summary>
     
     
-      <category term="denpdency inject" scheme="http://hanxiaolin.me/tags/denpdency-inject/"/>
+      <category term="denpdency inject" scheme="https://hanxiaolin.github.io/blog/tags/denpdency-inject/"/>
     
-      <category term="设计模式" scheme="http://hanxiaolin.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://hanxiaolin.github.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="依赖注入" scheme="http://hanxiaolin.me/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
+      <category term="依赖注入" scheme="https://hanxiaolin.github.io/blog/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
   <entry>
     <title>设计模式之观察者模式</title>
-    <link href="http://hanxiaolin.me/2017/07/01/observer/"/>
-    <id>http://hanxiaolin.me/2017/07/01/observer/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/07/01/observer/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/07/01/observer/</id>
     <published>2017-06-30T21:21:11.000Z</published>
     <updated>2017-06-30T14:33:15.000Z</updated>
     
@@ -169,18 +183,18 @@
     </summary>
     
     
-      <category term="设计模式" scheme="http://hanxiaolin.me/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://hanxiaolin.github.io/blog/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-      <category term="observer" scheme="http://hanxiaolin.me/tags/observer/"/>
+      <category term="observer" scheme="https://hanxiaolin.github.io/blog/tags/observer/"/>
     
-      <category term="观察者模式" scheme="http://hanxiaolin.me/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+      <category term="观察者模式" scheme="https://hanxiaolin.github.io/blog/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>php之迭代器实际应用</title>
-    <link href="http://hanxiaolin.me/2017/06/28/iterator/"/>
-    <id>http://hanxiaolin.me/2017/06/28/iterator/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/06/28/iterator/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/06/28/iterator/</id>
     <published>2017-06-28T14:00:18.000Z</published>
     <updated>2017-07-04T14:40:26.000Z</updated>
     
@@ -193,14 +207,14 @@
     </summary>
     
     
-      <category term="iterator" scheme="http://hanxiaolin.me/tags/iterator/"/>
+      <category term="iterator" scheme="https://hanxiaolin.github.io/blog/tags/iterator/"/>
     
   </entry>
   
   <entry>
     <title>base64,urlencode,hash 归纳整理</title>
-    <link href="http://hanxiaolin.me/2017/06/08/base64/"/>
-    <id>http://hanxiaolin.me/2017/06/08/base64/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/06/08/base64/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/06/08/base64/</id>
     <published>2017-06-07T17:54:54.000Z</published>
     <updated>2017-06-08T10:27:23.000Z</updated>
     
@@ -213,18 +227,18 @@
     </summary>
     
     
-      <category term="base64" scheme="http://hanxiaolin.me/tags/base64/"/>
+      <category term="base64" scheme="https://hanxiaolin.github.io/blog/tags/base64/"/>
     
-      <category term="urlencode" scheme="http://hanxiaolin.me/tags/urlencode/"/>
+      <category term="urlencode" scheme="https://hanxiaolin.github.io/blog/tags/urlencode/"/>
     
-      <category term="hash" scheme="http://hanxiaolin.me/tags/hash/"/>
+      <category term="hash" scheme="https://hanxiaolin.github.io/blog/tags/hash/"/>
     
   </entry>
   
   <entry>
     <title>正则匹配中文到底发生了什么?</title>
-    <link href="http://hanxiaolin.me/2017/06/03/php-preg-chiness/"/>
-    <id>http://hanxiaolin.me/2017/06/03/php-preg-chiness/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/06/03/php-preg-chiness/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/06/03/php-preg-chiness/</id>
     <published>2017-06-02T18:51:19.000Z</published>
     <updated>2017-06-07T09:18:16.000Z</updated>
     
@@ -237,18 +251,18 @@
     </summary>
     
     
-      <category term="utf-8" scheme="http://hanxiaolin.me/tags/utf-8/"/>
+      <category term="utf-8" scheme="https://hanxiaolin.github.io/blog/tags/utf-8/"/>
     
-      <category term="php" scheme="http://hanxiaolin.me/tags/php/"/>
+      <category term="php" scheme="https://hanxiaolin.github.io/blog/tags/php/"/>
     
-      <category term="正则" scheme="http://hanxiaolin.me/tags/%E6%AD%A3%E5%88%99/"/>
+      <category term="正则" scheme="https://hanxiaolin.github.io/blog/tags/%E6%AD%A3%E5%88%99/"/>
     
   </entry>
   
   <entry>
     <title>ASCII,ANSI,Unicode,UTF-8编码区别</title>
-    <link href="http://hanxiaolin.me/2017/06/01/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/"/>
-    <id>http://hanxiaolin.me/2017/06/01/ascii-utf8-unicode-ansi编码区别/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/06/01/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/06/01/ascii-utf8-unicode-ansi编码区别/</id>
     <published>2017-05-31T16:13:56.000Z</published>
     <updated>2017-06-07T09:16:34.000Z</updated>
     
@@ -262,18 +276,18 @@
     </summary>
     
     
-      <category term="ascii" scheme="http://hanxiaolin.me/tags/ascii/"/>
+      <category term="ascii" scheme="https://hanxiaolin.github.io/blog/tags/ascii/"/>
     
-      <category term="utf-8" scheme="http://hanxiaolin.me/tags/utf-8/"/>
+      <category term="utf-8" scheme="https://hanxiaolin.github.io/blog/tags/utf-8/"/>
     
-      <category term="unicode" scheme="http://hanxiaolin.me/tags/unicode/"/>
+      <category term="unicode" scheme="https://hanxiaolin.github.io/blog/tags/unicode/"/>
     
   </entry>
   
   <entry>
     <title>ssh 公钥私钥认证记录</title>
-    <link href="http://hanxiaolin.me/2017/05/23/ssh/"/>
-    <id>http://hanxiaolin.me/2017/05/23/ssh/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/05/23/ssh/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/05/23/ssh/</id>
     <published>2017-05-23T14:42:00.000Z</published>
     <updated>2017-06-07T09:18:39.000Z</updated>
     
@@ -289,14 +303,14 @@
     </summary>
     
     
-      <category term="ssh" scheme="http://hanxiaolin.me/tags/ssh/"/>
+      <category term="ssh" scheme="https://hanxiaolin.github.io/blog/tags/ssh/"/>
     
   </entry>
   
   <entry>
     <title>redis升级之原数据导入</title>
-    <link href="http://hanxiaolin.me/2017/04/28/page/"/>
-    <id>http://hanxiaolin.me/2017/04/28/page/</id>
+    <link href="https://hanxiaolin.github.io/blog/2017/04/28/page/"/>
+    <id>https://hanxiaolin.github.io/blog/2017/04/28/page/</id>
     <published>2017-04-27T16:21:45.000Z</published>
     <updated>2017-06-07T09:16:55.000Z</updated>
     
@@ -309,7 +323,7 @@
     </summary>
     
     
-      <category term="redis" scheme="http://hanxiaolin.me/tags/redis/"/>
+      <category term="redis" scheme="https://hanxiaolin.github.io/blog/tags/redis/"/>
     
   </entry>
   
