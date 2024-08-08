@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>星空一号</title>
-  <icon>https://hanxiaolin.github.io/icon.png</icon>
+  <icon>http://blog.hanxiaolin.top/icon.png</icon>
   <subtitle>前行。</subtitle>
-  <link href="https://hanxiaolin.github.io/atom.xml" rel="self"/>
+  <link href="http://blog.hanxiaolin.top/atom.xml" rel="self"/>
   
-  <link href="https://hanxiaolin.github.io/"/>
-  <updated>2024-08-08T06:21:11.069Z</updated>
-  <id>https://hanxiaolin.github.io/</id>
+  <link href="http://blog.hanxiaolin.top/"/>
+  <updated>2024-08-08T09:32:57.182Z</updated>
+  <id>http://blog.hanxiaolin.top/</id>
   
   <author>
     <name>hanxiaolin</name>
@@ -17,9 +17,36 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>本地大模型实战</title>
+    <link href="http://blog.hanxiaolin.top/2024/08/09/%E6%9C%AC%E5%9C%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%9E%E6%88%98/"/>
+    <id>http://blog.hanxiaolin.top/2024/08/09/%E6%9C%AC%E5%9C%B0%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%AE%9E%E6%88%98/</id>
+    <published>2024-08-08T16:58:10.000Z</published>
+    <updated>2024-08-08T09:32:57.182Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;1-开源大模型对比&quot;&gt;&lt;a href=&quot;#1-开源大模型对比&quot; class=&quot;headerlink&quot; title=&quot;1. 开源大模型对比&quot;&gt;&lt;/a&gt;1. 开源大模型对比&lt;/h3&gt;&lt;p&gt; 在最新的&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="大模型" scheme="http://blog.hanxiaolin.top/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
+    
+    <category term="机器学习" scheme="http://blog.hanxiaolin.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    <category term="llama" scheme="http://blog.hanxiaolin.top/tags/llama/"/>
+    
+  </entry>
+  
+  <entry>
     <title>spl之ArrayAccess</title>
-    <link href="https://hanxiaolin.github.io/2018/09/26/ArrayAccess/"/>
-    <id>https://hanxiaolin.github.io/2018/09/26/ArrayAccess/</id>
+    <link href="http://blog.hanxiaolin.top/2018/09/26/ArrayAccess/"/>
+    <id>http://blog.hanxiaolin.top/2018/09/26/ArrayAccess/</id>
     <published>2018-09-26T10:28:28.000Z</published>
     <updated>2024-08-08T06:21:11.069Z</updated>
     
@@ -29,14 +56,14 @@
     
     
     
-    <category term="spl,php" scheme="https://hanxiaolin.github.io/tags/spl-php/"/>
+    <category term="spl,php" scheme="http://blog.hanxiaolin.top/tags/spl-php/"/>
     
   </entry>
   
   <entry>
     <title>logstash安装记录(yum)</title>
-    <link href="https://hanxiaolin.github.io/2018/07/19/logstash-install/"/>
-    <id>https://hanxiaolin.github.io/2018/07/19/logstash-install/</id>
+    <link href="http://blog.hanxiaolin.top/2018/07/19/logstash-install/"/>
+    <id>http://blog.hanxiaolin.top/2018/07/19/logstash-install/</id>
     <published>2018-07-19T02:34:59.000Z</published>
     <updated>2024-08-08T06:21:11.075Z</updated>
     
@@ -46,14 +73,14 @@
     
     
     
-    <category term="logstash" scheme="https://hanxiaolin.github.io/tags/logstash/"/>
+    <category term="logstash" scheme="http://blog.hanxiaolin.top/tags/logstash/"/>
     
   </entry>
   
   <entry>
     <title>东矶列岛之田岙岛</title>
-    <link href="https://hanxiaolin.github.io/2017/07/20/tianaodao/"/>
-    <id>https://hanxiaolin.github.io/2017/07/20/tianaodao/</id>
+    <link href="http://blog.hanxiaolin.top/2017/07/20/tianaodao/"/>
+    <id>http://blog.hanxiaolin.top/2017/07/20/tianaodao/</id>
     <published>2017-07-19T21:15:48.000Z</published>
     <updated>2024-08-08T07:38:45.605Z</updated>
     
@@ -63,18 +90,18 @@
     
     
     
-    <category term="田岙岛" scheme="https://hanxiaolin.github.io/tags/%E7%94%B0%E5%B2%99%E5%B2%9B/"/>
+    <category term="田岙岛" scheme="http://blog.hanxiaolin.top/tags/%E7%94%B0%E5%B2%99%E5%B2%9B/"/>
     
-    <category term="东矶列岛" scheme="https://hanxiaolin.github.io/tags/%E4%B8%9C%E7%9F%B6%E5%88%97%E5%B2%9B/"/>
+    <category term="东矶列岛" scheme="http://blog.hanxiaolin.top/tags/%E4%B8%9C%E7%9F%B6%E5%88%97%E5%B2%9B/"/>
     
-    <category term="台州" scheme="https://hanxiaolin.github.io/tags/%E5%8F%B0%E5%B7%9E/"/>
+    <category term="台州" scheme="http://blog.hanxiaolin.top/tags/%E5%8F%B0%E5%B7%9E/"/>
     
   </entry>
   
   <entry>
     <title>php扩展开发那点事</title>
-    <link href="https://hanxiaolin.github.io/2017/07/07/php-module/"/>
-    <id>https://hanxiaolin.github.io/2017/07/07/php-module/</id>
+    <link href="http://blog.hanxiaolin.top/2017/07/07/php-module/"/>
+    <id>http://blog.hanxiaolin.top/2017/07/07/php-module/</id>
     <published>2017-07-07T13:03:21.000Z</published>
     <updated>2024-08-08T06:21:11.074Z</updated>
     
@@ -84,16 +111,16 @@
     
     
     
-    <category term="php" scheme="https://hanxiaolin.github.io/tags/php/"/>
+    <category term="php" scheme="http://blog.hanxiaolin.top/tags/php/"/>
     
-    <category term="扩展" scheme="https://hanxiaolin.github.io/tags/%E6%89%A9%E5%B1%95/"/>
+    <category term="扩展" scheme="http://blog.hanxiaolin.top/tags/%E6%89%A9%E5%B1%95/"/>
     
   </entry>
   
   <entry>
     <title>git版本升级</title>
-    <link href="https://hanxiaolin.github.io/2017/07/05/gitUpgrade/"/>
-    <id>https://hanxiaolin.github.io/2017/07/05/gitUpgrade/</id>
+    <link href="http://blog.hanxiaolin.top/2017/07/05/gitUpgrade/"/>
+    <id>http://blog.hanxiaolin.top/2017/07/05/gitUpgrade/</id>
     <published>2017-07-05T02:43:39.000Z</published>
     <updated>2024-08-08T06:21:11.072Z</updated>
     
@@ -117,16 +144,16 @@
     
     
     
-    <category term="git" scheme="https://hanxiaolin.github.io/tags/git/"/>
+    <category term="git" scheme="http://blog.hanxiaolin.top/tags/git/"/>
     
-    <category term="升级" scheme="https://hanxiaolin.github.io/tags/%E5%8D%87%E7%BA%A7/"/>
+    <category term="升级" scheme="http://blog.hanxiaolin.top/tags/%E5%8D%87%E7%BA%A7/"/>
     
   </entry>
   
   <entry>
     <title>设计模式之依赖注入</title>
-    <link href="https://hanxiaolin.github.io/2017/07/04/denpdencyInject/"/>
-    <id>https://hanxiaolin.github.io/2017/07/04/denpdencyInject/</id>
+    <link href="http://blog.hanxiaolin.top/2017/07/04/denpdencyInject/"/>
+    <id>http://blog.hanxiaolin.top/2017/07/04/denpdencyInject/</id>
     <published>2017-07-04T05:56:46.000Z</published>
     <updated>2024-08-08T06:21:11.069Z</updated>
     
@@ -136,18 +163,18 @@
     
     
     
-    <category term="denpdency inject" scheme="https://hanxiaolin.github.io/tags/denpdency-inject/"/>
+    <category term="denpdency inject" scheme="http://blog.hanxiaolin.top/tags/denpdency-inject/"/>
     
-    <category term="设计模式" scheme="https://hanxiaolin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <category term="设计模式" scheme="http://blog.hanxiaolin.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="依赖注入" scheme="https://hanxiaolin.github.io/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
+    <category term="依赖注入" scheme="http://blog.hanxiaolin.top/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
     
   </entry>
   
   <entry>
     <title>设计模式之观察者模式</title>
-    <link href="https://hanxiaolin.github.io/2017/06/30/observer/"/>
-    <id>https://hanxiaolin.github.io/2017/06/30/observer/</id>
+    <link href="http://blog.hanxiaolin.top/2017/06/30/observer/"/>
+    <id>http://blog.hanxiaolin.top/2017/06/30/observer/</id>
     <published>2017-06-30T13:21:11.000Z</published>
     <updated>2024-08-08T06:21:11.074Z</updated>
     
@@ -157,18 +184,18 @@
     
     
     
-    <category term="设计模式" scheme="https://hanxiaolin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    <category term="设计模式" scheme="http://blog.hanxiaolin.top/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
-    <category term="observer" scheme="https://hanxiaolin.github.io/tags/observer/"/>
+    <category term="observer" scheme="http://blog.hanxiaolin.top/tags/observer/"/>
     
-    <category term="观察者模式" scheme="https://hanxiaolin.github.io/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <category term="观察者模式" scheme="http://blog.hanxiaolin.top/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>php之迭代器实际应用</title>
-    <link href="https://hanxiaolin.github.io/2017/06/28/iterator/"/>
-    <id>https://hanxiaolin.github.io/2017/06/28/iterator/</id>
+    <link href="http://blog.hanxiaolin.top/2017/06/28/iterator/"/>
+    <id>http://blog.hanxiaolin.top/2017/06/28/iterator/</id>
     <published>2017-06-28T06:00:18.000Z</published>
     <updated>2024-08-08T06:21:11.070Z</updated>
     
@@ -178,14 +205,14 @@
     
     
     
-    <category term="iterator" scheme="https://hanxiaolin.github.io/tags/iterator/"/>
+    <category term="iterator" scheme="http://blog.hanxiaolin.top/tags/iterator/"/>
     
   </entry>
   
   <entry>
     <title>base64,urlencode,hash 归纳整理</title>
-    <link href="https://hanxiaolin.github.io/2017/06/07/base64/"/>
-    <id>https://hanxiaolin.github.io/2017/06/07/base64/</id>
+    <link href="http://blog.hanxiaolin.top/2017/06/07/base64/"/>
+    <id>http://blog.hanxiaolin.top/2017/06/07/base64/</id>
     <published>2017-06-07T09:54:54.000Z</published>
     <updated>2024-08-08T06:21:11.073Z</updated>
     
@@ -195,18 +222,18 @@
     
     
     
-    <category term="base64" scheme="https://hanxiaolin.github.io/tags/base64/"/>
+    <category term="base64" scheme="http://blog.hanxiaolin.top/tags/base64/"/>
     
-    <category term="urlencode" scheme="https://hanxiaolin.github.io/tags/urlencode/"/>
+    <category term="urlencode" scheme="http://blog.hanxiaolin.top/tags/urlencode/"/>
     
-    <category term="hash" scheme="https://hanxiaolin.github.io/tags/hash/"/>
+    <category term="hash" scheme="http://blog.hanxiaolin.top/tags/hash/"/>
     
   </entry>
   
   <entry>
     <title>正则匹配中文到底发生了什么?</title>
-    <link href="https://hanxiaolin.github.io/2017/06/02/php-preg-chiness/"/>
-    <id>https://hanxiaolin.github.io/2017/06/02/php-preg-chiness/</id>
+    <link href="http://blog.hanxiaolin.top/2017/06/02/php-preg-chiness/"/>
+    <id>http://blog.hanxiaolin.top/2017/06/02/php-preg-chiness/</id>
     <published>2017-06-02T10:51:19.000Z</published>
     <updated>2024-08-08T06:21:11.071Z</updated>
     
@@ -216,18 +243,18 @@
     
     
     
-    <category term="utf-8" scheme="https://hanxiaolin.github.io/tags/utf-8/"/>
+    <category term="utf-8" scheme="http://blog.hanxiaolin.top/tags/utf-8/"/>
     
-    <category term="php" scheme="https://hanxiaolin.github.io/tags/php/"/>
+    <category term="php" scheme="http://blog.hanxiaolin.top/tags/php/"/>
     
-    <category term="正则" scheme="https://hanxiaolin.github.io/tags/%E6%AD%A3%E5%88%99/"/>
+    <category term="正则" scheme="http://blog.hanxiaolin.top/tags/%E6%AD%A3%E5%88%99/"/>
     
   </entry>
   
   <entry>
     <title>ASCII,ANSI,Unicode,UTF-8编码区别</title>
-    <link href="https://hanxiaolin.github.io/2017/05/31/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/"/>
-    <id>https://hanxiaolin.github.io/2017/05/31/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/</id>
+    <link href="http://blog.hanxiaolin.top/2017/05/31/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/"/>
+    <id>http://blog.hanxiaolin.top/2017/05/31/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/</id>
     <published>2017-05-31T08:13:56.000Z</published>
     <updated>2024-08-08T06:21:11.070Z</updated>
     
@@ -238,18 +265,18 @@
     
     
     
-    <category term="ascii" scheme="https://hanxiaolin.github.io/tags/ascii/"/>
+    <category term="ascii" scheme="http://blog.hanxiaolin.top/tags/ascii/"/>
     
-    <category term="utf-8" scheme="https://hanxiaolin.github.io/tags/utf-8/"/>
+    <category term="utf-8" scheme="http://blog.hanxiaolin.top/tags/utf-8/"/>
     
-    <category term="unicode" scheme="https://hanxiaolin.github.io/tags/unicode/"/>
+    <category term="unicode" scheme="http://blog.hanxiaolin.top/tags/unicode/"/>
     
   </entry>
   
   <entry>
     <title>ssh 公钥私钥认证记录</title>
-    <link href="https://hanxiaolin.github.io/2017/05/23/ssh/"/>
-    <id>https://hanxiaolin.github.io/2017/05/23/ssh/</id>
+    <link href="http://blog.hanxiaolin.top/2017/05/23/ssh/"/>
+    <id>http://blog.hanxiaolin.top/2017/05/23/ssh/</id>
     <published>2017-05-23T06:42:00.000Z</published>
     <updated>2024-08-08T06:21:11.072Z</updated>
     
@@ -265,14 +292,14 @@
     
     
     
-    <category term="ssh" scheme="https://hanxiaolin.github.io/tags/ssh/"/>
+    <category term="ssh" scheme="http://blog.hanxiaolin.top/tags/ssh/"/>
     
   </entry>
   
   <entry>
     <title>redis升级之原数据导入</title>
-    <link href="https://hanxiaolin.github.io/2017/04/27/page/"/>
-    <id>https://hanxiaolin.github.io/2017/04/27/page/</id>
+    <link href="http://blog.hanxiaolin.top/2017/04/27/page/"/>
+    <id>http://blog.hanxiaolin.top/2017/04/27/page/</id>
     <published>2017-04-27T08:21:45.000Z</published>
     <updated>2024-08-08T06:21:11.075Z</updated>
     
@@ -282,7 +309,7 @@
     
     
     
-    <category term="redis" scheme="https://hanxiaolin.github.io/tags/redis/"/>
+    <category term="redis" scheme="http://blog.hanxiaolin.top/tags/redis/"/>
     
   </entry>
   
