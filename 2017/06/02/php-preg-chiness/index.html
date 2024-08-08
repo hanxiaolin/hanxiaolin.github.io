@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="hanxiaolin">
+
+
+  <meta name="subtitle" content="前行。">
+
+
+
+
+<title>正则匹配中文到底发生了什么? | 星空一号</title>
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/nprogress/nprogress.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+
+<script src="/lib/nprogress/nprogress.js"></script>
+
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: false,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 2px #de7441, 0 0 4px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ri:moon-line" : "ri:sun-line"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="星空一号" type="application/atom+xml">
+</head>
+<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200 relative">
+  <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center text-base">
+      <a href="/" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" id="logo" src="/images/logo.svg" alt="星空一号" />
+          星空一号
+        </h2>
+      </a>
+      <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
+        正则匹配中文到底发生了什么?
+      </div>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3">
+        
+          <a class="hidden sm:flex" href="/archives">Posts</a>
+        
+        
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Github" target="_blank" rel="noopener" href="https://github.com/hanxiaolin">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+        
+        <a class="w-5 h-5 hidden sm:flex" title="Github" href="rss2.xml">
+          <iconify-icon width="20" icon="ri:rss-line"></iconify-icon>
+        </a>
+        <a class="w-5 h-5" title="toggle theme" id="toggle-dark">
+          <iconify-icon width="20" icon="" id="theme-icon"></iconify-icon>
+        </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
+        <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+          <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
+        </span>
+        <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+          <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden fixed left-0 right-0 top-12 bottom-0 z-10">
+  <div id="menu-content" class="relative z-20 bg-white/80 px-6 sm:px-8 py-2 backdrop-blur-xl -translate-y-full transition-transform duration-300">
+    <ul class="nav flex flex-col sm:flex-row text-sm font-medium">
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+    </ul>
+  </div>
+  <div class="mask bg-black/20 absolute inset-0"></div>
+</div>
+
+  <main class="pt-14">
+    <!-- css -->
+
+<link rel="stylesheet" href="/lib/fancybox/fancybox.min.css">
+
+
+<link rel="stylesheet" href="/lib/tocbot/tocbot.min.css">
+
+<!-- toc -->
+
+  <!-- tocbot -->
+<nav class="post-toc toc text-sm w-48 relative top-32 right-0 opacity-70 hidden lg:block" style="position: fixed !important;"></nav>
+
+
+<section class="px-6 max-w-prose mx-auto md:px-0">
+  <!-- header -->
+  <header class="overflow-hidden pt-6 pb-6 md:pt-12">
+    <div class="pt-4 md:pt-6">
+      <h1 id="article-title" class="text-[2rem] font-bold leading-snug mb-4 md:mb-6 md:text-[2.6rem]">
+        正则匹配中文到底发生了什么?
+      </h1>
+      <div>
+        <section class="flex items-center gap-3 text-sm">
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="carbon-calendar" ></iconify-icon>
+            <time>2024-08-08</time>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="ic:round-access-alarm" ></iconify-icon>
+            <span>5 min</span>
+          </span>
+          <span class="text-gray-400">·</span>
+          <span class="flex items-center gap-1">
+            <iconify-icon width="18" icon="icon-park-outline:font-search" ></iconify-icon>
+            <span>1.3k words</span>
+          </span>
+          
+        </section>
+      </div>
+    </div>
+  </header>
+  <!-- content -->
+  <article class="post-content prose m-auto slide-enter-content dark:prose-invert">
+    <h2 id="学而不思则罔"><a href="#学而不思则罔" class="headerlink" title="学而不思则罔"></a>学而不思则罔</h2><p>本着”学而不思则罔”的态度, 在上篇Blog理解了ASCII、Unicode、UTF-8之间关系与含义之后, 我们将继续研究字符编码是如何在日常的程序处理中发挥作用的。<br>关于正则几乎所有的代码搬运工都会运用到, 无论在什么样的应用场景正则总能发挥它神奇的匹配能力, 那么正则是如何正确的匹配出中文的呢? 接下来就让我们一一实验。</p>
+<span id="more"></span>
+
+<h2 id="实践才是检验真理的唯一标准"><a href="#实践才是检验真理的唯一标准" class="headerlink" title="实践才是检验真理的唯一标准"></a>实践才是检验真理的唯一标准</h2><p>首先我们从google上去扒下两段匹配中文的正则代码。如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">preg_match(&quot;/[\x7f-\xff]/&quot;, &#x27;我是中文&#x27;)</span><br><span class="line">preg_match(&quot;/[\x&#123;4e00&#125;-\x&#123;9fa5&#125;]/u&quot;, &#x27;我是中文&#x27;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后我们开始去实验这两段代码匹配中文、英文、数字的情况。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">preg_match(&quot;/[\x7f-\xff]/&quot;, &#x27;中文&#x27;)</span><br><span class="line">preg_match(&quot;/[\x&#123;4e00&#125;-\x&#123;9fa5&#125;]/u&quot;, &#x27;中文&#x27;)</span><br><span class="line"></span><br><span class="line">preg_match(&quot;/[\x7f-\xff]/&quot;, &#x27;english&#x27;)</span><br><span class="line">preg_match(&quot;/[\x&#123;4e00&#125;-\x&#123;9fa5&#125;]/u&quot;, &#x27;english&#x27;)</span><br><span class="line"></span><br><span class="line">preg_match(&quot;/[\x7f-\xff]/&quot;, 1)</span><br><span class="line">preg_match(&quot;/[\x&#123;4e00&#125;-\x&#123;9fa5&#125;]/u&quot;, 1)</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 1 0 0 0 0 </span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到, 匹配中文的前两句代码都返回了1代表匹配成功, 后面四句全部返回0代表失败。这样就验证了这两句代码确实能够正确的匹配到中文。</p>
+<h2 id="x7f-xff"><a href="#x7f-xff" class="headerlink" title="&#x2F;[\x7f-\xff]&#x2F;"></a>&#x2F;[\x7f-\xff]&#x2F;</h2><p>首先我们来看第一句中关键的<code>[\x7f-\xff]</code>, 这段被称作”模式”。 很显然”\x”代表这个一个十六进制的数字 ,”\x7f”翻译十进制后等于127, “\xff”等于255, 而”-“代表范围从什么值到什么值, “[]”代表其中的任何一个。 那这段的含义已经很明了了, 目标字符串凡是出现在127~255区间内都能够匹配得上。但是一想我们匹配的是中文啊, 它为什么能够在这段区间内呢?<br>通过上篇Blog我们其实就能够明白, 我们肉眼说能够看到的字符, 其实在计算机内存储的都只是数字, 只不过在展现的当下按照某种编码字典把数字替换成了对应的字符而已。查看IED现在用的是UTF-8编码, 然后我们用PHP输出”中”字对应UTF-8码。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$a = &quot;中&quot;;</span><br><span class="line">for ($i = 0; $i &lt; strlen($a); $i++) &#123;</span><br><span class="line">   echo ord($a[$i]) . &#x27; &#x27;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>返回结果:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">228 184 173</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>是不是突然发现了什么, “中”字是由三个数字(三字节)组成的, 而这三个数字都在127~255之间。 具体匹配的过程是把其中的每一个数字(字节)单独去和模式匹配, 如果有一个数字(字节)与模式匹配上,就代表目标字符串与模式匹配上了。<code>228 184 173</code>这三个数字(三字节)在UTF-8码下对应着”中”字, 再把这三个数字转换成十六进制数字<code>0xe4b8ad</code>。为了确认UTF-8码的”中”是否真的为<code>0xe4b8ad</code>, 我们来小小的验证一把。 </p>
+<ol>
+<li>打开<a target="_blank" rel="noopener" href="http://www.chi2ko.com/tool/CJK.htm">汉字Unicode对应表</a>, 找到”中”字的Unicode编码<code>0x4e2d</code>。</li>
+<li>转成二进制 1001110 00101101</li>
+<li>按照Unicode转UTF-8(参考上篇Blog),  11100100 10111000 10101101.</li>
+<li>最后转成十六进制<code>0xe4b8ad</code>。</li>
+</ol>
+<p>果然”中”字的UTF-8码为<code>0xe4b8ad</code>。而数字与英文的字符串之所以没有匹配上模式, 是因为在UTF-8码下, 数字与英文的字符串对应的数字都分布在0~127之间。具体可以参考Unicode向下兼容的ASCII码。</p>
+<h2 id="x-4e00-x-9fa5-u"><a href="#x-4e00-x-9fa5-u" class="headerlink" title="&#x2F;[\x{4e00}-\x{9fa5}]&#x2F;u"></a>&#x2F;[\x{4e00}-\x{9fa5}]&#x2F;u</h2><p>接下来我们来看第二句的<code>\x&#123;4e00&#125;-\x&#123;9fa5&#125;</code>, 与上句有些差别的是这里的十六进制数字变化, 并且最后加了小u的修正符。其实这里的”\x4e00”正是Unicode编码中第一位中文字符”一”的编码,而”\x9fa5”为Unicode编码中文最后一位”龥”, 具体可以参考<a target="_blank" rel="noopener" href="http://jicheng.tw/hanzi/unicode.html?s=4E00&e=9fa5&uni=">Unicode文档</a>。 而对于小u修正符我们打开<a target="_blank" rel="noopener" href="http://php.net/manual/zh/reference.pcre.pattern.modifiers.php">PHP文档</a>, 找到关于小u的修正符描述:</p>
+<blockquote>
+<p>此修正符打开一个与 perl 不兼容的附加功能。 模式和目标字符串都被认为是 utf-8 的。 无效的目标字符串会导致 preg_* 函数什么都匹配不到； 无效的模式字符串会导致 E_WARNING 级别的错误。 PHP 5.3.4 后，5字节和6字节的 UTF-8 字符序列被考虑为无效（resp. PCRE 7.3 2007-08-28）。 以前就被认为是无效的 UTF-8。</p>
+</blockquote>
+<p>可以得知当我们用了小u修正符后, 模式和目标字符串都会被认为是UTF-8码。其中模式的十六进制都会被转成UTF-8码, 而目标字符串会变被当成一个整体的UTF-8码(三个字节)。最后拿”中”字的UTF-8码<code>0xe4b8ad</code>看是否出现在0xe4b880 ~ 0xe9bea5f范围内。</p>
+<h2 id="从最初开始"><a href="#从最初开始" class="headerlink" title="从最初开始"></a>从最初开始</h2><p>一个很难的知识点或是一个新的工具总是由许许多多的小知识点、小工具所堆积所重新组合而成的, 而我们所要做的是从点点滴滴学起, 从最初开始认识解刨这个计算机世界。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://segmentfault.com/q/1010000004153832/a-1020000004153879">PHP字符串中用正则表达式匹配中文出现乱码 segmentfault</a><br><a target="_blank" rel="noopener" href="http://www.chi2ko.com/tool/CJK.htm">Unicode中文编码表</a><br><a target="_blank" rel="noopener" href="http://jicheng.tw/">Unicode编码表大全</a><br><a target="_blank" rel="noopener" href="http://www.qqxiuzi.cn/bianma/Unicode-UTF.php">Unicode转UTF-8</a></p>
+
+  </article>
+  <!-- tag -->
+  <div class="mt-12 pt-6 border-t border-gray-200">
+    
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/utf-8/">utf-8</a>
+        </span>
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/php/">php</a>
+        </span>
+      
+        <span class="bg-gray-100 dark:bg-gray-700 px-2 py-1 m-1 text-sm rounded-md transition-colors hover:bg-gray-200">
+          <a href="/tags/%E6%AD%A3%E5%88%99/">正则</a>
+        </span>
+      
+    
+  </div>
+  <!-- prev and next -->
+  <div class="flex justify-between mt-12 pt-6 border-t border-gray-200">
+    <div>
+      
+        <a href="/2017/06/07/base64/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          <iconify-icon width="20" icon="ri:arrow-left-s-line" data-inline="false"></iconify-icon>
+          base64,urlencode,hash 归纳整理
+        </a>
+      
+    </div>
+    <div>
+      
+        <a href="/2017/05/31/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/" class="text-sm text-gray-400 hover:text-gray-500 flex justify-center">
+          ASCII,ANSI,Unicode,UTF-8编码区别
+          <iconify-icon width="20" icon="ri:arrow-right-s-line" data-inline="false"></iconify-icon>
+        </a>
+      
+    </div>
+  </div>
+  <!-- comment -->
+  <div class="article-comments mt-12">
+    
+
+  </div>
+</section>
+<!-- js inspect -->
+
+<script src="/lib/clipboard.min.js"></script>
+
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+<script>
+  $(document).ready(() => {
+    const maraidConfig = {
+      theme: "default",
+      logLevel: 3,
+      flowchart: { curve: "linear" },
+      gantt: { axisFormat: "%m/%d/%Y" },
+      sequence: { actorMargin: 50 },
+    };
+    mermaid.initialize(maraidConfig);
+  });
+</script>
+
+
+
+<script src="/lib/fancybox/fancybox.umd.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+    $('.post-content').each(function(i){
+      $(this).find('img').each(function(){
+        if ($(this).parent().hasClass('fancybox') || $(this).parent().is('a')) return;
+        var alt = this.alt;
+        if (alt) $(this).after('<span class="fancybox-alt">' + alt + '</span>');
+        $(this).wrap('<a class="fancybox-img" href="' + this.src + '" data-fancybox=\"gallery\" data-caption="' + alt + '"></a>')
+      });
+      $(this).find('.fancybox').each(function(){
+        $(this).attr('rel', 'article' + i);
+      });
+    });
+
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        // options
+    })
+  })
+</script>
+
+<!-- tocbot begin -->
+
+<script src="/lib/tocbot/tocbot.min.js"></script>
+
+<script>
+  $(document).ready(() => {
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.post-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.post-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3',
+        // For headings inside relative or absolute positioned containers within content.
+        hasInnerContainers: true,
+    });
+  })
+</script>
+<!-- tocbot end -->
+
+
+  </main>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitors</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Page Views</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="color: inherit;">CC BY-NC-SA 4.0</a>
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
+</footer>
+
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
+    <span class="flex justify-center items-center text-sm">
+      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+      <span id="scrollpercent"><span>0</span> %</span>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      const mapleCount = "10";
+      const speed = "0.5";
+      const mapleEl = document.getElementById("maple");
+      const maples = Array.from({ length: mapleCount }).map(() => {
+        const maple = document.createElement("div");
+        const scale = Math.random() * 0.5 + 0.5;
+        const offset = Math.random() * 2 - 1;
+        const x = Math.random() * mapleEl.clientWidth;
+        const y = -Math.random() * mapleEl.clientHeight;
+        const duration = 10 / speed;
+        const delay = -duration;
+        maple.className = "maple";
+        maple.style.width = `${24 * scale}px`;
+        maple.style.height = `${24 * scale}px`;
+        maple.style.left = `${x}px`;
+        maple.style.top = `${y}px`;
+        maple.style.setProperty("--maple-fall-offset", offset);
+        maple.style.setProperty("--maple-fall-height", `${Math.abs(y) + mapleEl.clientHeight}px`);
+        maple.style.animation = `fall ${duration}s linear infinite`;
+        maple.style.animationDelay = `${delay}s`;
+        mapleEl.appendChild(maple)
+        return maple
+      })
+    });
+  </script>
+  
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>星空一号</title>
+  <icon>https://hanxiaolin.github.io/icon.png</icon>
+  <subtitle>前行。</subtitle>
+  <link href="https://hanxiaolin.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://hanxiaolin.github.io/"/>
+  <updated>2024-08-08T06:21:11.069Z</updated>
+  <id>https://hanxiaolin.github.io/</id>
+  
+  <author>
+    <name>hanxiaolin</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>spl之ArrayAccess</title>
+    <link href="https://hanxiaolin.github.io/2018/09/26/ArrayAccess/"/>
+    <id>https://hanxiaolin.github.io/2018/09/26/ArrayAccess/</id>
+    <published>2018-09-26T10:28:28.000Z</published>
+    <updated>2024-08-08T06:21:11.069Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;突然想整理下自己的技术栈，毕竟也工作的蛮久，很多东西可能一直处于盲区所以想统一的做一个归纳，不懂的进一步去学习下，完善一下自己的技术栈。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="spl,php" scheme="https://hanxiaolin.github.io/tags/spl-php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>logstash安装记录(yum)</title>
+    <link href="https://hanxiaolin.github.io/2018/07/19/logstash-install/"/>
+    <id>https://hanxiaolin.github.io/2018/07/19/logstash-install/</id>
+    <published>2018-07-19T02:34:59.000Z</published>
+    <updated>2024-08-08T06:21:11.075Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;安装依赖的java1.8&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="logstash" scheme="https://hanxiaolin.github.io/tags/logstash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>东矶列岛之田岙岛</title>
+    <link href="https://hanxiaolin.github.io/2017/07/20/tianaodao/"/>
+    <id>https://hanxiaolin.github.io/2017/07/20/tianaodao/</id>
+    <published>2017-07-19T21:15:48.000Z</published>
+    <updated>2024-08-08T06:52:25.189Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;一个美好的夏天除了冰镇的西瓜、清凉的冷气, 当然还要有蔚蓝的大海了。而我们这次的行程就在临海市下东矶列岛中的田岙岛, 说起这个田岙岛还真有些陌生, 临行前在百度找了好久也只能找到寥寥几篇描述, 它是属于东矶列岛中一个比较大的有人居住的海岛, 这里可千万别于东极列岛搞混, 有同行的小伙伴还以为这次去的地点是东极岛-_-!。&lt;br&gt;周五的下班点一到, 马上赶往上海体育场的集合地, 与两个小伙伴会合后加入同行的驴友团中, 经过5个多小时的车程后我们在凌晨12点半左右来到了临海市上盘镇, 在这里我们将落脚休息一晚。由于田岙岛没有进行过大规模开发, 岛上没有饭店, 小酒店倒是有一家, 第二天一大早我们便从上盘镇的菜市场采购在岛上生活的食材了。带着食材我们来到了码头坐上了前往田岙岛的渔船, 说起这艘渔船真有些拉风, 刚开船时候轰轰的排气烟囱匆匆冒着大黑烟, 活像加勒比船长的珍珠号。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="田岙岛" scheme="https://hanxiaolin.github.io/tags/%E7%94%B0%E5%B2%99%E5%B2%9B/"/>
+    
+    <category term="东矶列岛" scheme="https://hanxiaolin.github.io/tags/%E4%B8%9C%E7%9F%B6%E5%88%97%E5%B2%9B/"/>
+    
+    <category term="台州" scheme="https://hanxiaolin.github.io/tags/%E5%8F%B0%E5%B7%9E/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>php扩展开发那点事</title>
+    <link href="https://hanxiaolin.github.io/2017/07/07/php-module/"/>
+    <id>https://hanxiaolin.github.io/2017/07/07/php-module/</id>
+    <published>2017-07-07T13:03:21.000Z</published>
+    <updated>2024-08-08T06:21:11.074Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;为什么要开发php扩展&quot;&gt;&lt;a href=&quot;#为什么要开发php扩展&quot; class=&quot;headerlink&quot; title=&quot;为什么要开发php扩展?&quot;&gt;&lt;/a&gt;为什么要开发php扩展?&lt;/h2&gt;&lt;p&gt;今天在研究php扩展的时候, 有同学问我为什么要自己动手写php的扩展, 什么场景采用的到? 我回答他在需要处理大量数据的时候, 用c写的扩展性能会高很多。晚上回到家中想起, 假如自己在实际项目中去写php扩展, 很可能不会因为性能原因。因为对于php而言性能本不就是它的优势, 如果因为性能原因我们大可以选择一门更适合的语言去完成这个项目。那什么样的应用场景需要自己亲自动手去开发php扩展呢?&lt;br&gt;我想如果某些服务需要大批量的应用于各个项目当中, 我觉得它很适合用扩展去解决, 统一管理又独立项目之外而且还能轻松的迁移于各个项目。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="php" scheme="https://hanxiaolin.github.io/tags/php/"/>
+    
+    <category term="扩展" scheme="https://hanxiaolin.github.io/tags/%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git版本升级</title>
+    <link href="https://hanxiaolin.github.io/2017/07/05/gitUpgrade/"/>
+    <id>https://hanxiaolin.github.io/2017/07/05/gitUpgrade/</id>
+    <published>2017-07-05T02:43:39.000Z</published>
+    <updated>2024-08-08T06:21:11.072Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;新装的虚拟机用git去拉远程的仓库时报错, 查了下原因是版本的问题, 当前版本1.7.2。 那就把升级的过程做下小小记录, 方便以后查看。&lt;/p&gt;
+&lt;p&gt;1.安装编译git时需要的包&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# yum install  gcc perl-ExtUtils-MakeMaker&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;2.删除已有的git&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# yum remove git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;3.下载git源码&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# cd /usr/local/src&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# wget https://www.kernel.org/pub/software/scm/git/git-2.0.5.tar.gz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# tar xzf git-2.0.5.tar.gz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;4.编译安装&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# cd git-2.0.5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# make prefix=/usr/local/git all&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# make prefix=/usr/local/git install&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# echo &amp;quot;export PATH=$PATH:/usr/local/git/bin&amp;quot; &amp;gt;&amp;gt; /etc/bashrc&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# source /etc/bashrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;5.检查一下版本号&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# git --version&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    
+    <category term="git" scheme="https://hanxiaolin.github.io/tags/git/"/>
+    
+    <category term="升级" scheme="https://hanxiaolin.github.io/tags/%E5%8D%87%E7%BA%A7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式之依赖注入</title>
+    <link href="https://hanxiaolin.github.io/2017/07/04/denpdencyInject/"/>
+    <id>https://hanxiaolin.github.io/2017/07/04/denpdencyInject/</id>
+    <published>2017-07-04T05:56:46.000Z</published>
+    <updated>2024-08-08T06:21:11.069Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;当下所流行的php框架几乎都应用了依赖注入这项历久弥新的设计模式, 比如Symfony,Laravel,Yii等等。作为phper如果不懂这个模式未免有点落伍, 那我们今天就来研究学习依赖注入。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="denpdency inject" scheme="https://hanxiaolin.github.io/tags/denpdency-inject/"/>
+    
+    <category term="设计模式" scheme="https://hanxiaolin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="依赖注入" scheme="https://hanxiaolin.github.io/tags/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式之观察者模式</title>
+    <link href="https://hanxiaolin.github.io/2017/06/30/observer/"/>
+    <id>https://hanxiaolin.github.io/2017/06/30/observer/</id>
+    <published>2017-06-30T13:21:11.000Z</published>
+    <updated>2024-08-08T06:21:11.074Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;在平常的工作中我们很习惯用我们惯有的思维模式去完成一个新的需求任务, 但是很有可能在不久的将来, 这段在当时看起来比较完整的代码, 很可能需要很大程度的去重构才能应付当下的需求。&lt;br&gt;在软件架构下, 一个程序的可扩展是非常重要的, 而我们的惯有思维往往只基于当下的场景需要去做思考, 这时我们需要一些新的思维模式去使我们的软件足够应付项目的扩张以及需求的变更, 所以设计模式变成了很好的思想源泉, 接下下一段时间我将会陆续的学习一些常用设计模式以及贴上代码片段。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="设计模式" scheme="https://hanxiaolin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    <category term="observer" scheme="https://hanxiaolin.github.io/tags/observer/"/>
+    
+    <category term="观察者模式" scheme="https://hanxiaolin.github.io/tags/%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>php之迭代器实际应用</title>
+    <link href="https://hanxiaolin.github.io/2017/06/28/iterator/"/>
+    <id>https://hanxiaolin.github.io/2017/06/28/iterator/</id>
+    <published>2017-06-28T06:00:18.000Z</published>
+    <updated>2024-08-08T06:21:11.070Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;php内置的spl, 有许多默认的接口, 但是在平常写业务逻辑代码用到的不多。就在今天想迭代器(Iterator)的应用场景时, 突然发现一个很好用的场景, 重复的从数据库中批量获取数据, 代码如下。  &lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="iterator" scheme="https://hanxiaolin.github.io/tags/iterator/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>base64,urlencode,hash 归纳整理</title>
+    <link href="https://hanxiaolin.github.io/2017/06/07/base64/"/>
+    <id>https://hanxiaolin.github.io/2017/06/07/base64/</id>
+    <published>2017-06-07T09:54:54.000Z</published>
+    <updated>2024-08-08T06:21:11.073Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;base64、urlencode、hash本是风马牛不相及的几类东西, 这里把它们放在一起, 纯粹是因为本人想把这些零碎的小知识点做一个统一的归纳。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="base64" scheme="https://hanxiaolin.github.io/tags/base64/"/>
+    
+    <category term="urlencode" scheme="https://hanxiaolin.github.io/tags/urlencode/"/>
+    
+    <category term="hash" scheme="https://hanxiaolin.github.io/tags/hash/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>正则匹配中文到底发生了什么?</title>
+    <link href="https://hanxiaolin.github.io/2017/06/02/php-preg-chiness/"/>
+    <id>https://hanxiaolin.github.io/2017/06/02/php-preg-chiness/</id>
+    <published>2017-06-02T10:51:19.000Z</published>
+    <updated>2024-08-08T06:21:11.071Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;学而不思则罔&quot;&gt;&lt;a href=&quot;#学而不思则罔&quot; class=&quot;headerlink&quot; title=&quot;学而不思则罔&quot;&gt;&lt;/a&gt;学而不思则罔&lt;/h2&gt;&lt;p&gt;本着”学而不思则罔”的态度, 在上篇Blog理解了ASCII、Unicode、UTF-8之间关系与含义之后, 我们将继续研究字符编码是如何在日常的程序处理中发挥作用的。&lt;br&gt;关于正则几乎所有的代码搬运工都会运用到, 无论在什么样的应用场景正则总能发挥它神奇的匹配能力, 那么正则是如何正确的匹配出中文的呢? 接下来就让我们一一实验。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="utf-8" scheme="https://hanxiaolin.github.io/tags/utf-8/"/>
+    
+    <category term="php" scheme="https://hanxiaolin.github.io/tags/php/"/>
+    
+    <category term="正则" scheme="https://hanxiaolin.github.io/tags/%E6%AD%A3%E5%88%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ASCII,ANSI,Unicode,UTF-8编码区别</title>
+    <link href="https://hanxiaolin.github.io/2017/05/31/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/"/>
+    <id>https://hanxiaolin.github.io/2017/05/31/ascii-utf8-unicode-ansi%E7%BC%96%E7%A0%81%E5%8C%BA%E5%88%AB/</id>
+    <published>2017-05-31T08:13:56.000Z</published>
+    <updated>2024-08-08T06:21:11.070Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在工作的过程中, 时常都会碰到字符编码的问题, 比如最常用的UTF-8码。 从IED要设置为UTF-8码到网上下载数据选择UTF-8码, 编码问题总会关系到数据能否正常展现。&lt;/p&gt;
+&lt;p&gt;在很早前刚入坑的时候, 老师总会告诉我们打开IDE前得先设置字符编码为UTF-8无BOM格式, 当时也不理解这样设置的目的, 稀里糊涂的一直到今。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="ascii" scheme="https://hanxiaolin.github.io/tags/ascii/"/>
+    
+    <category term="utf-8" scheme="https://hanxiaolin.github.io/tags/utf-8/"/>
+    
+    <category term="unicode" scheme="https://hanxiaolin.github.io/tags/unicode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ssh 公钥私钥认证记录</title>
+    <link href="https://hanxiaolin.github.io/2017/05/23/ssh/"/>
+    <id>https://hanxiaolin.github.io/2017/05/23/ssh/</id>
+    <published>2017-05-23T06:42:00.000Z</published>
+    <updated>2024-08-08T06:21:11.072Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;公钥私钥&quot;&gt;&lt;a href=&quot;#公钥私钥&quot; class=&quot;headerlink&quot; title=&quot;公钥私钥&quot;&gt;&lt;/a&gt;公钥私钥&lt;/h2&gt;&lt;p&gt;一直都有在使用证书登录, 但每次都是在用的时候google生成秘钥的命令, 然后把生成的私钥加到服务器上去,</summary>
+        
+      
+    
+    
+    
+    
+    <category term="ssh" scheme="https://hanxiaolin.github.io/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>redis升级之原数据导入</title>
+    <link href="https://hanxiaolin.github.io/2017/04/27/page/"/>
+    <id>https://hanxiaolin.github.io/2017/04/27/page/</id>
+    <published>2017-04-27T08:21:45.000Z</published>
+    <updated>2024-08-08T06:21:11.075Z</updated>
+    
+    
+    <summary type="html">&lt;h3 id=&quot;redis版本老旧&quot;&gt;&lt;a href=&quot;#redis版本老旧&quot; class=&quot;headerlink&quot; title=&quot;redis版本老旧&quot;&gt;&lt;/a&gt;redis版本老旧&lt;/h3&gt;&lt;p&gt;写代码的过程中,刚好用到一个新的redis命令&lt;code&gt;SRANDMEMBER&lt;/code&gt;,调用的时候却发现报了错误&lt;code&gt;(error) ERR unknown command &amp;#39;SRANDMEMBER&amp;#39;&lt;/code&gt;&lt;br&gt;, 查询redis的手册看到命令在2.6版本之后才开始支持, 再查看现在所使用redis的版本号, 居然是老旧的2.4版本。既然如此那便开始动手升级吧。 &lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="redis" scheme="https://hanxiaolin.github.io/tags/redis/"/>
+    
+  </entry>
+  
+</feed>

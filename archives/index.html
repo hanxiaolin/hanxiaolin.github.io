@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="Zh-cn">
+<head>
+  <meta charset="UTF-8">
+
+
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <meta name="author" content="hanxiaolin">
+
+
+  <meta name="subtitle" content="前行。">
+
+
+
+
+<title>Archiv | 星空一号</title>
+
+
+
+<link rel="icon" href="/favicon.png">
+
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/nprogress/nprogress.css">
+
+
+
+<script src="/lib/jquery.min.js"></script>
+
+
+<script src="/lib/iconify-icon.min.js"></script>
+
+
+<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  };
+</script>
+
+
+<script src="/lib/nprogress/nprogress.js"></script>
+
+<script>
+  $(document).ready(() => {
+    NProgress.configure({
+      showSpinner: false,
+    });
+    NProgress.start();
+    $("#nprogress .bar").css({
+      background: "#de7441",
+    });
+    $("#nprogress .peg").css({
+      "box-shadow": "0 0 2px #de7441, 0 0 4px #de7441",
+    });
+    $("#nprogress .spinner-icon").css({
+      "border-top-color": "#de7441",
+      "border-left-color": "#de7441",
+    });
+    setTimeout(function () {
+      NProgress.done();
+      $(".fade").removeClass("out");
+    }, 800);
+  });
+</script>
+
+<script>
+  (function () {
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+    if (setting === "dark" || (prefersDark && setting !== "light"))
+      document.documentElement.classList.toggle("dark", true);
+    let isDark = document.documentElement.classList.contains("dark");
+  })();
+
+  $(document).ready(function () {
+    // init icon
+    const prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const isDark = document.documentElement.classList.contains("dark");
+    $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+
+    function toggleGiscusTheme() {
+      const isDark = document.documentElement.classList.contains("dark");
+      const giscusFrame = document.querySelector("iframe.giscus-frame");
+      if (giscusFrame) {
+        giscusFrame.contentWindow.postMessage(
+          {
+            giscus: {
+              setConfig: {
+                theme: isDark ? "dark" : "light",
+              },
+            },
+          },
+          "https://giscus.app"
+        );
+      }
+    }
+
+
+    // toggle dark mode
+    function toggleDark() {
+      let isDark = document.documentElement.classList.contains("dark");
+      const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+      isDark = !isDark;
+      document.documentElement.classList.toggle("dark", isDark);
+      $("#theme-icon").attr("icon", isDark ? "ri:moon-line" : "ri:sun-line");
+      if (prefersDark === isDark) {
+        localStorage.setItem("hexo-color-scheme", "auto");
+      } else {
+        localStorage.setItem("hexo-color-scheme", isDark ? "dark" : "light");
+      }
+      toggleGiscusTheme();
+    }
+    $("#toggle-dark").click(toggleDark);
+
+    // listen dark mode change
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        const setting = localStorage.getItem("hexo-color-scheme") || "auto";
+        if (setting === "auto") {
+          document.documentElement.classList.toggle("dark", e.matches);
+          $("#theme-icon").attr(
+            "icon",
+            e.matches ? "ri:moon-line" : "ri:sun-line"
+          );
+          toggleGiscusTheme();
+        }
+      });
+  });
+</script>
+
+
+
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="星空一号" type="application/atom+xml">
+</head>
+<body class="font-sans bg-white dark:bg-zinc-900 text-gray-700 dark:text-gray-200 relative">
+  <header class="fixed w-full px-5 py-1 z-10 backdrop-blur-xl backdrop-saturate-150 border-b border-black/5">
+  <div class="max-auto">
+    <nav class="flex items-center text-base">
+      <a href="/" class="group">
+        <h2 class="font-medium tracking-tighterp text-l p-2">
+          <img class="w-5 mr-2 inline-block transition-transform group-hover:rotate-[30deg]" id="logo" src="/images/logo.svg" alt="星空一号" />
+          星空一号
+        </h2>
+      </a>
+      <div id="header-title" class="opacity-0 md:ml-2 md:mt-[0.1rem] text-xs font-medium whitespace-nowrap overflow-hidden overflow-ellipsis">
+        
+      </div>
+      <div class="flex-1"></div>
+      <div class="flex items-center gap-3">
+        
+          <a class="hidden sm:flex" href="/archives">Posts</a>
+        
+        
+          
+            <a class="w-5 h-5 hidden sm:flex" title="Github" target="_blank" rel="noopener" href="https://github.com/hanxiaolin">
+              <iconify-icon width="20" icon="ri:github-line"></iconify-icon>
+            </a>
+          
+        
+        <a class="w-5 h-5 hidden sm:flex" title="Github" href="rss2.xml">
+          <iconify-icon width="20" icon="ri:rss-line"></iconify-icon>
+        </a>
+        <a class="w-5 h-5" title="toggle theme" id="toggle-dark">
+          <iconify-icon width="20" icon="" id="theme-icon"></iconify-icon>
+        </a>
+      </div>
+      <div class="flex items-center justify-center gap-3 ml-3 sm:hidden">
+        <span class="w-5 h-5" aria-hidden="true" role="img" id="open-menu">
+          <iconify-icon width="20" icon="carbon:menu" ></iconify-icon>
+        </span>
+        <span class="w-5 h-5 hidden" aria-hidden="true" role="img" id="close-menu">
+          <iconify-icon  width="20" icon="carbon:close" ></iconify-icon>
+        </span>
+      </div>
+    </nav>
+  </div>
+</header>
+<div id="menu-panel" class="h-0 overflow-hidden sm:hidden fixed left-0 right-0 top-12 bottom-0 z-10">
+  <div id="menu-content" class="relative z-20 bg-white/80 px-6 sm:px-8 py-2 backdrop-blur-xl -translate-y-full transition-transform duration-300">
+    <ul class="nav flex flex-col sm:flex-row text-sm font-medium">
+      
+        <li class="nav-portfolio sm:mx-2 border-b sm:border-0 border-black/5 last:border-0 hover:text-main">
+          <a href="/archives" class="flex h-12 sm:h-auto items-center">Posts</a>
+        </li>
+      
+    </ul>
+  </div>
+  <div class="mask bg-black/20 absolute inset-0"></div>
+</div>
+
+  <main class="pt-14">
+    <section class="px-6 max-w-prose mx-auto gap-12 grid grid-cols-1">
+  <div class="flex flex-col h-48 items-center justify-center">
+    <h1 class="site-title text-4xl leading-relaxed">
+      星空一号
+    </h1>
+    <p class="text-gray-500 mt-2">
+      前行。
+    </p>
+  </div>
+  
+  
+    
+    
+      <div class="relative pointer-events-none">
+        <span class="text-9xl opacity-10 absolute -left-11 -top-6 font-bold">2018</span>
+      </div>
+    
+    <a style="--stagger:0" href="/2018/09/26/ArrayAccess/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          spl之ArrayAccess
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>突然想整理下自己的技术栈，毕竟也工作的蛮久，很多东西可能一直处于盲区所以想统一的做一个归纳，不懂的进一步去学习下，完善一下自己的技术栈。</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          9月 26
+          ·
+          1 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:1" href="/2018/07/19/logstash-install/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          logstash安装记录(yum)
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>安装依赖的java1.8</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          7月 19
+          ·
+          1 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+      <div class="relative pointer-events-none">
+        <span class="text-9xl opacity-10 absolute -left-11 -top-6 font-bold">2017</span>
+      </div>
+    
+    <a style="--stagger:2" href="/2017/07/20/tianaodao/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          东矶列岛之田岙岛
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>一个美好的夏天除了冰镇的西瓜、清凉的冷气, 当然还要有蔚蓝的大海了。而我们这次的行程就在临海市下东矶列岛中的田岙岛, 说起这个田岙岛还真有些陌生, 临行前在百度找了好久也只能找到寥寥几篇描述, 它是属于东矶列岛中一个比较大的有人居住的海岛, 这里可千万别于东极列岛搞混, 有同行的小伙伴还以为这次去的地点是东极岛-_-!。<br>周五的下班点一到, 马上赶往上海体育场的集合地, 与两个小伙伴会合后加入同行的驴友团中, 经过5个多小时的车程后我们在凌晨12点半左右来到了临海市上盘镇, 在这里我们将落脚休息一晚。由于田岙岛没有进行过大规模开发, 岛上没有饭店, 小酒店倒是有一家, 第二天一大早我们便从上盘镇的菜市场采购在岛上生活的食材了。带着食材我们来到了码头坐上了前往田岙岛的渔船, 说起这艘渔船真有些拉风, 刚开船时候轰轰的排气烟囱匆匆冒着大黑烟, 活像加勒比船长的珍珠号。</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          7月 19
+          ·
+          2 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:3" href="/2017/07/07/php-module/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          php扩展开发那点事
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <h2 id="为什么要开发php扩展"><a href="#为什么要开发php扩展" class="headerlink" title="为什么要开发php扩展?"></a>为什么要开发php扩展?</h2><p>今天在研究php扩展的时候, 有同学问我为什么要自己动手写php的扩展, 什么场景采用的到? 我回答他在需要处理大量数据的时候, 用c写的扩展性能会高很多。晚上回到家中想起, 假如自己在实际项目中去写php扩展, 很可能不会因为性能原因。因为对于php而言性能本不就是它的优势, 如果因为性能原因我们大可以选择一门更适合的语言去完成这个项目。那什么样的应用场景需要自己亲自动手去开发php扩展呢?<br>我想如果某些服务需要大批量的应用于各个项目当中, 我觉得它很适合用扩展去解决, 统一管理又独立项目之外而且还能轻松的迁移于各个项目。</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          7月 07
+          ·
+          3 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:4" href="/2017/07/05/gitUpgrade/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          git版本升级
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>新装的虚拟机用git去拉远程的仓库时报错, 查了下原因是版本的问题, 当前版本1.7.2。 那就把升级的过程做下小小记录, 方便以后查看。</p>
+<p>1.安装编译git时需要的包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># yum install curl-devel expat-devel gettext-devel openssl-devel zlib-devel</span><br><span class="line"># yum install  gcc perl-ExtUtils-MakeMaker</span><br></pre></td></tr></table></figure>
+
+<p>2.删除已有的git</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># yum remove git</span><br></pre></td></tr></table></figure>
+
+<p>3.下载git源码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/local/src</span><br><span class="line"># wget https://www.kernel.org/pub/software/scm/git/git-2.0.5.tar.gz</span><br><span class="line"># tar xzf git-2.0.5.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>4.编译安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># cd git-2.0.5</span><br><span class="line"># make prefix=/usr/local/git all</span><br><span class="line"># make prefix=/usr/local/git install</span><br><span class="line"># echo &quot;export PATH=$PATH:/usr/local/git/bin&quot; &gt;&gt; /etc/bashrc</span><br><span class="line"># source /etc/bashrc</span><br></pre></td></tr></table></figure>
+
+<p>5.检查一下版本号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># git --version</span><br></pre></td></tr></table></figure>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          7月 05
+          ·
+          1 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:5" href="/2017/07/04/denpdencyInject/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          设计模式之依赖注入
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>当下所流行的php框架几乎都应用了依赖注入这项历久弥新的设计模式, 比如Symfony,Laravel,Yii等等。作为phper如果不懂这个模式未免有点落伍, 那我们今天就来研究学习依赖注入。</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          7月 04
+          ·
+          2 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:6" href="/2017/06/30/observer/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          设计模式之观察者模式
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>在平常的工作中我们很习惯用我们惯有的思维模式去完成一个新的需求任务, 但是很有可能在不久的将来, 这段在当时看起来比较完整的代码, 很可能需要很大程度的去重构才能应付当下的需求。<br>在软件架构下, 一个程序的可扩展是非常重要的, 而我们的惯有思维往往只基于当下的场景需要去做思考, 这时我们需要一些新的思维模式去使我们的软件足够应付项目的扩张以及需求的变更, 所以设计模式变成了很好的思想源泉, 接下下一段时间我将会陆续的学习一些常用设计模式以及贴上代码片段。</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          6月 30
+          ·
+          2 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:7" href="/2017/06/28/iterator/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          php之迭代器实际应用
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>php内置的spl, 有许多默认的接口, 但是在平常写业务逻辑代码用到的不多。就在今天想迭代器(Iterator)的应用场景时, 突然发现一个很好用的场景, 重复的从数据库中批量获取数据, 代码如下。  </p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          6月 28
+          ·
+          2 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:8" href="/2017/06/07/base64/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          base64,urlencode,hash 归纳整理
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <p>base64、urlencode、hash本是风马牛不相及的几类东西, 这里把它们放在一起, 纯粹是因为本人想把这些零碎的小知识点做一个统一的归纳。</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          6月 07
+          ·
+          1 min
+        </p>
+      </section>
+    </a>
+  
+    
+    
+    <a style="--stagger:9" href="/2017/06/02/php-preg-chiness/" data-animate>
+      <header>
+        <h2 class="font-bold text-xl">
+          正则匹配中文到底发生了什么?
+        </h2>
+      </header>
+      <section class="text-gray-400 my-2 text-sm time">
+        <p class="line-clamp-4">
+          
+            <div class="py-2">
+              <h2 id="学而不思则罔"><a href="#学而不思则罔" class="headerlink" title="学而不思则罔"></a>学而不思则罔</h2><p>本着”学而不思则罔”的态度, 在上篇Blog理解了ASCII、Unicode、UTF-8之间关系与含义之后, 我们将继续研究字符编码是如何在日常的程序处理中发挥作用的。<br>关于正则几乎所有的代码搬运工都会运用到, 无论在什么样的应用场景正则总能发挥它神奇的匹配能力, 那么正则是如何正确的匹配出中文的呢? 接下来就让我们一一实验。</p>
+            </div>
+          
+        </p>
+        <p class="line-clamp-4">
+          6月 02
+          ·
+          5 min
+        </p>
+      </section>
+    </a>
+  
+</section>
+
+  </main>
+  <footer class="flex flex-col h-40 items-center justify-center text-gray-400 text-sm">
+  <!-- busuanzi -->
+  
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- Busuanzi Analytics -->
+<div class="flex items-center gap-2">
+  <span>Visitors</span>
+  <span id="busuanzi_value_site_uv"></span>
+  <span>Page Views</span>
+  <span id="busuanzi_value_site_pv"></span>
+</div>
+<!-- End Busuanzi Analytics -->
+
+
+  <!-- copyright -->
+  <div class="flex items-center gap-2">
+    <a target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/" style="color: inherit;">CC BY-NC-SA 4.0</a>
+    <span>© 2022</span>
+    <iconify-icon width="18" icon="emojione-monotone:maple-leaf" ></iconify-icon>
+    <a href="https://github.com/xbmlz" target="_blank" rel="noopener noreferrer">xbmlz</a>
+  </div>
+  <!-- powered by -->
+  <div class="flex items-center gap-2">
+    <span>Powered by</span>
+    <a href="https://hexo.io/" target="_blank" rel="noopener noreferrer">Hexo</a>
+    <span>&</span>
+    <a href="https://github.com/xbmlz/hexo-theme-maple" target="_blank" rel="noopener noreferrer">Maple</a>
+  </div>
+
+</footer>
+
+  <div class="back-to-top box-border fixed right-6 z-1024 -bottom-20 rounded py-1 px-1 bg-slate-900 opacity-60 text-white cursor-pointer text-center dark:bg-slate-600">
+    <span class="flex justify-center items-center text-sm">
+      <iconify-icon width="18" icon="ion:arrow-up-c" id="go-top"></iconify-icon>
+      <span id="scrollpercent"><span>0</span> %</span>
+    </span>
+  </div>
+  
+<script src="/js/main.js"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      const mapleCount = "10";
+      const speed = "0.5";
+      const mapleEl = document.getElementById("maple");
+      const maples = Array.from({ length: mapleCount }).map(() => {
+        const maple = document.createElement("div");
+        const scale = Math.random() * 0.5 + 0.5;
+        const offset = Math.random() * 2 - 1;
+        const x = Math.random() * mapleEl.clientWidth;
+        const y = -Math.random() * mapleEl.clientHeight;
+        const duration = 10 / speed;
+        const delay = -duration;
+        maple.className = "maple";
+        maple.style.width = `${24 * scale}px`;
+        maple.style.height = `${24 * scale}px`;
+        maple.style.left = `${x}px`;
+        maple.style.top = `${y}px`;
+        maple.style.setProperty("--maple-fall-offset", offset);
+        maple.style.setProperty("--maple-fall-height", `${Math.abs(y) + mapleEl.clientHeight}px`);
+        maple.style.animation = `fall ${duration}s linear infinite`;
+        maple.style.animationDelay = `${delay}s`;
+        mapleEl.appendChild(maple)
+        return maple
+      })
+    });
+  </script>
+  
+
+
+  <div class="fixed top-0 bottom-0 left-0 right-0 pointer-events-none print:hidden" id="maple"></div>
+</body>
+
+</html>
